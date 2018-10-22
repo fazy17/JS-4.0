@@ -93,7 +93,19 @@ window.addEventListener('DOMContentLoaded', function() {
     setClock('timer', deadline);
 
     // Модальное окно
+        // other
 
+        console.log(navigator.userAgent);
+        
+        let user = navigator.userAgent;
+        
+        if (user.search(/Edge/) > 0 || user.search(/Internet Explorer/) > 0) {
+            overlay.classList.add('show')
+        } else if (user.search(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/) > 0) ) {
+            overlay.classList.remove('show');
+        } else {
+
+        }
     let more = document.querySelector('.more'),
         overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close'),
@@ -125,4 +137,5 @@ window.addEventListener('DOMContentLoaded', function() {
         overlay.style.display = 'none';
         document.body.style.overflow = '';
     }
+    
 });
