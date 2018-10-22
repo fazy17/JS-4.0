@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', function() {
         popup = document.querySelector('.popup'),
         descriptionBtn = document.querySelectorAll('.description-btn');
 
-    // other
+    // Написать 2 разные анимации появления модального окна
 
     console.log(navigator.userAgent);
         
@@ -141,7 +141,7 @@ window.addEventListener('DOMContentLoaded', function() {
             openModal();
         });
     }
-    
+
     more.addEventListener('click', function() {
         this.classList.add('more-splash');
         openModal();
