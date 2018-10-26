@@ -130,7 +130,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let message = {
         loading: 'Загрузка...',
-        success: 'Спасибо! Скоро мы с вами свяжемся!',
+        success: backgrond = '../img/main_bg.jpg',
         failed: 'Что-то пошло не так...'
     };
 
@@ -174,7 +174,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Ввод только 1-9 и +
+    // Ввод только 0-9 и +
     for (let i = 0; i < input.length; i++) {
         input[i].addEventListener('input', function(){
             input[i].value = input[i].value.replace(/[^0-9+]/g, '');
@@ -194,19 +194,28 @@ window.addEventListener('DOMContentLoaded', function() {
 
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
-        request.setRequestHeader ('Content-Type', 'application/x-www-form-urlencoded');
-
+        request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8');
+        
         let formData = new FormData(formContacts);
 
-        request.send(formData);
+        let obj = {};
+        formData.forEach(function(value, key) {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
 
-        if (request.readyState < 4) {
-            statusMessage.innerHTML = message.loading;
-        } else if (request.readyState === 4 && request.status == 200) {
-            statusMessage.innerHTML = message.success;
-        } else {
-            statusMessage.innerHTML = message.failed;
-        }
+        request.send(json);
+
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState < 4) {
+                statusMessage.innerHTML = message.loading;
+            } else if (request.readyState === 4 && request.status == 200) {
+                statusMessage.innerHTML = message.success;
+            } else {
+                statusMessage.innerHTML = message.failed;
+            }
+        });
+
 
         for (let i = 0; i < inputContacts.length; i++) {
             inputContacts[i].value = '';
@@ -214,7 +223,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    // Ввод только 1-9 и +
+    // Ввод только 0-9 и +
     for (let i = 0; i < inputContacts.length; i++) {
         inputContacts[1].addEventListener('input', function(){
             inputContacts[1].value = inputContacts[1].value.replace(/[^0-9+]/g, '');
