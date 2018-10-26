@@ -140,7 +140,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
         statusMessage.classList.add('status');
         
-    form.addEventListener('sumbit', function(event) {
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
 
         form.appendChild(statusMessage);
@@ -173,5 +173,39 @@ window.addEventListener('DOMContentLoaded', function() {
             input[i].value = '';
         }
     });
+
+    // Контактная форма
+
+    let formContacts = document.getElementById('form'),
+        inputContacts = formContacts.getElementsByTagName('input');
+
+    formContacts.addEventListener('submit', function(event) {
+
+        event.preventDefault();
+
+        formContacts.appendChild(statusMessage);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'server.php');
+        request.setRequestHeader ('Content-Type', 'application/x-www-form-urlencoded');
+
+        let formData = new FormData(formContacts);
+
+        request.send(formData);
+
+        if (request.readyState < 4) {
+            statusMessage.innerHTML = message.loading;
+        } else if (request.readyState === 4 && request.status == 200) {
+            statusMessage.innerHTML = message.success;
+        } else {
+            statusMessage.innerHTML = message.failed;
+        }
+
+        for (let i = 0; i < inputContacts.length; i++) {
+            inputContacts[i].value = '';
+        }
+
+    });
+        
     
 });
