@@ -174,6 +174,13 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Ввод только 1-9 и +
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener('input', function(){
+            input[i].value = input[i].value.replace(/[^0-9+]/g, '');
+        });
+    }
+
     // Контактная форма
 
     let formContacts = document.getElementById('form'),
@@ -206,6 +213,12 @@ window.addEventListener('DOMContentLoaded', function() {
         }
 
     });
-        
+
+    // Ввод только 1-9 и +
+    for (let i = 0; i < inputContacts.length; i++) {
+        inputContacts[1].addEventListener('input', function(){
+            inputContacts[1].value = inputContacts[1].value.replace(/[^0-9+]/g, '');
+        });
+    }
     
 });
