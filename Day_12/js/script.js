@@ -156,14 +156,6 @@ function sendForm(elem) {
                 
                 request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8');
                 
-                let obj = {};
-                formData.forEach(function(value, key) {
-                    obj[key] = value;
-                });
-                let json = JSON.stringify(obj);
-
-                request.send(json);
-
                 request.onreadystatechange = function() {
                     if (request.readyState < 4) {
                         resolve()
@@ -176,8 +168,14 @@ function sendForm(elem) {
                         }
                     }
                 }
+                
+                let obj = {};
+                formData.forEach(function(value, key) {
+                    obj[key] = value;
+                });
+                let json = JSON.stringify(obj);
 
-                request.send(data);
+                request.send(json);
             });
  
         }
