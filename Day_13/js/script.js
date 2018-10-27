@@ -290,7 +290,7 @@ sendForm(formBottom);
             if (restDays.value == '' || persons.value == '') {
                 totalValue.textContent = 0;
             } else {
-                totalValue.textContent = total;
+                totalValue.textContent = total * place.options[place.selectedIndex].value;
             }   
         });
 
@@ -301,7 +301,7 @@ sendForm(formBottom);
                 if (persons.value == '' || restDays.value == '') {
                     totalValue.textContent = 0;
                 } else {
-                    totalValue.textContent = total;
+                    totalValue.textContent = total * place.options[place.selectedIndex].value;
                 }
         });
 
