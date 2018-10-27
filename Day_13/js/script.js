@@ -232,7 +232,7 @@ sendForm(formBottom);
 
     function showSlides(n) {
 
-        if (n > slideIndex.length) {
+        if (n > slides.length) {
             slideIndex = 1;
         }
 
