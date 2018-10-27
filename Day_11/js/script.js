@@ -130,7 +130,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let message = {
         loading: 'Загрузка...',
-        success: backgrond = '../img/main_bg.jpg',
+        success: 'Спасибо! Скоро мы с вами свяжемся!',
         failed: 'Что-то пошло не так...'
     };
 
