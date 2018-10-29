@@ -1,5 +1,5 @@
 function timer() {
-    let deadline = '2018-10-18';
+    let deadline = '2018-10-25';
     
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -44,9 +44,9 @@ function timer() {
             }
 
             if (t.total <= 0) {
-                hours.textContent = 0;
-                minutes.textContent = 0;
-                seconds.textContent = 0;
+                hours.textContent = '00';
+                minutes.textContent = '00';
+                seconds.textContent = '00';
 
                 clearInterval(timeInterval);
             }
