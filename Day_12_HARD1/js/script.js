@@ -34,27 +34,3 @@ window.addEventListener('DOMContentLoaded', function() {
     });
     
 });
-
-// inputRub.addEventListener('input', () => {
-//     new Promise((resolve, reject) => {
-//         let request = new XMLHttpRequest();
-
-//         request.open('GET', 'js/current.json');
-//         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-//         request.send();
-
-//         request.addEventListener('readystatechange', function () {
-//             if (request.readyState < 4) {
-//                 // Pending...
-//             } else if (request.readyState === 4 && request.status == 200) {
-//                 resolve(JSON.parse(request.response));
-//             } else {
-//                 reject(request.statusText);
-//             }
-//         });
-
-//     }).then(v => {
-//         inputUsd.value = inputRub.value / v.usd;
-//     }, e => {
-//         inputUsd.value = e;
-//     });
