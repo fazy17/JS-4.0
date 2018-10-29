@@ -32,7 +32,7 @@ function form() {
                             resolve()
                         } else if (request.readyState === 4) {
                             if (request.status == 200 && request.status < 300) {
-                            resolve() 
+                                resolve() 
                             }
                             else {
                                 reject()
