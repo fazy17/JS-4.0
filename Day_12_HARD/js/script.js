@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 let request = new XMLHttpRequest();
 
                 request.open('GET', 'js/current.json');
-                requset.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+                request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
                 request.send();
 
                 request.addEventListener('readystatechange', function() {
