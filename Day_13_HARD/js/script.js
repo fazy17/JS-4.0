@@ -249,6 +249,9 @@ sendForm(formBottom);
 
     function plusSlides(n) {
         showSlides(slideIndex += n);
+        animate(function(timePassed) { 
+            slides[slideIndex - 1].style.top = timePassed / 10 + 'px';
+        }, 2000);
     }
 
     function currentSlides(n) {
@@ -261,10 +264,6 @@ sendForm(formBottom);
     
     next.addEventListener('click', ()=> {
         plusSlides(1);
-        animate(function(timePassed) {
-            slides.style.left = timePassed / 1 + 'px';
-            slides.style.top = timePassed / 2 + 'px';
-        }, 2000);
     });
 
     dotsWrap.addEventListener('click', function(event) {
@@ -306,31 +305,34 @@ sendForm(formBottom);
         persons.addEventListener('change', function() {
             personsSum = +this.value;
             total = (daysSum + personsSum)*4000;
-
-            if (restDays.value == '' || persons.value == '') {
+    
+            if (restDays.value == '' || persons.value == '' || restDays.value == 0 || persons.value == 0) {
                 totalValue.textContent = 0;
             } else {
                 totalValue.textContent = total * place.options[place.selectedIndex].value;
+                numbersUp(0, total * place.options[place.selectedIndex].value, 5000, 5);
             }   
         });
 
         restDays.addEventListener('change', function() {
-                daysSum = +this.value;
-                total = (daysSum + personsSum)*4000;
+            daysSum = +this.value;
+            total = (daysSum + personsSum)*4000;
 
-                if (persons.value == '' || restDays.value == '') {
-                    totalValue.textContent = 0;
-                } else {
-                    totalValue.textContent = total * place.options[place.selectedIndex].value;
-                }
+            if (persons.value == '' || restDays.value == '' || restDays.value == 0 || persons.value == 0) {
+                totalValue.textContent = 0;
+            } else {
+                totalValue.textContent = total * place.options[place.selectedIndex].value;
+                numbersUp(0, total * place.options[place.selectedIndex].value, 5000, 5);
+            }
         });
 
         place.addEventListener('change', function() {
-            if (restDays.value == '' || persons.value == '') {
+            if (restDays.value == '' || persons.value == '' || restDays.value == 0 || persons.value == 0) {
                 totalValue.textContent = 0;
             } else {
                 let a = total;
                 totalValue.textContent = a * this.options[this.selectedIndex].value;
+                numbersUp(total, a * this.options[this.selectedIndex].value, 5000, 5);
             }
         });
 
@@ -341,4 +343,21 @@ sendForm(formBottom);
         restDays.addEventListener('input', function() {
             this.value = this.value.replace(/[^\d]/g, '');;
         });
+
+       let numbersUp = (startNum, endNum, time, interval) => {
+        let start = Date.now(),
+            val = startNum;
+
+        let animateInterval = setInterval(function() {
+            let timePassed = Date.now() - start;
+
+            if (timePassed >= time) {
+                val = endNum;
+                clearInterval(animateInterval);
+            } else {
+                val += (endNum - startNum) / (time / interval);
+            }
+            totalValue.textContent = Math.floor(val);
+        }, interval);
+    };
 });
